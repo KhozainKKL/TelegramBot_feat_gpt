@@ -1,15 +1,15 @@
-FROM python:latest
-MAINTAINER deimandar
-RUN python -m pip install --upgrade pip &&  \
-    pip install telebot &&  \
-    pip install python-dotenv &&  \
-    pip install pydantic &&  \
-    pip install peewee &&  \
-    pip install openai
+FROM python:3.11
 
+COPY requirements.txt /temp/requirements.txt
 
-WORKDIR /MyHelp_bot
+COPY core /core
 
-COPY . /MyHelp_bot
+WORKDIR /core
 
+RUN pip install --upgrade pip
 
+RUN pip install --upgrade setuptools
+
+RUN pip install -r /temp/requirements.txt
+
+RUN chmod 755 .

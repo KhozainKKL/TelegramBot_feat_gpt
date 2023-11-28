@@ -1,19 +1,14 @@
-version: "3.1"
+version: "3.7"
 
 services:
   tgbot:
-    image: deimandar/myhelp_bot
     container_name: bot
     build:
       context: .
-    command: python3 MyHelp_bot/tg_bot_ChatGPT.py
+    command: python tg_bot_ChatGPT.py
     restart: always
-    networks:
-      - botnet
     env_file:
       - ".env"
+    volumes:
+      - ./MyHelp_bot:/MyHelp_bot/
 
-
-networks:
-  botnet:
-    driver: bridge
